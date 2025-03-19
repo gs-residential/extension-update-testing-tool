@@ -14,12 +14,22 @@
 
 const STATUS_ELEMENT = document.getElementById("status");
 const UPLOAD_ELEMENT = document.getElementById("upload");
+const BROWSER_SELECT_ELEMENT = document.getElementById("browser-select");
 const FILE_INPUT = UPLOAD_ELEMENT.querySelector("input");
 const DOWNLOAD_BUTTON = document.getElementById("download");
 const INSTRUCTIONS_SECTION = document.getElementById("instructions");
 const WINDOWS_POLICY_ID = document.getElementById("windows-policy-id");
 const WINDOWS_POLICY_HOST = document.getElementById("windows-policy-host");
-
+const BROWSER_REGISTRY_PATH_ELEMENTS = document.querySelectorAll(".browser-registry-path");
+const POLICY_PATH_POINTER_ELEMENTS = document.querySelectorAll(".policy-page-pointer");
+const BROWSER_REGISTRY_PATHS = {
+  edge: "Microsoft\\Edge",
+  chrome: "Google\\Chrome"
+};
+const BROWSER_POLICY_PAGE_PATHS = {
+  edge: "edge://policy",
+  chrome: "chrome://policy"
+};
 let uploaded = false;
 
 async function onDrop(event) {
@@ -137,7 +147,12 @@ async function onDownload(event) {
 
 UPLOAD_ELEMENT.addEventListener("dragover", (e) => e.preventDefault());
 UPLOAD_ELEMENT.addEventListener("drop", onDrop);
-
+BROWSER_SELECT_ELEMENT.addEventListener("change", (e) => {
+  e.preventDefault()
+  const {value} = e.target
+  BROWSER_REGISTRY_PATH_ELEMENTS.forEach(el => el.innerText = BROWSER_REGISTRY_PATHS[value])
+  POLICY_PATH_POINTER_ELEMENTS.forEach(el => el.innerText = BROWSER_POLICY_PAGE_PATHS[value])
+})
 FILE_INPUT.addEventListener("change", async (e) => {
   if (
     FILE_INPUT.files.length === 1 &&

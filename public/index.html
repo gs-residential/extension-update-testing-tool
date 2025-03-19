@@ -35,25 +35,32 @@ limitations under the License. -->
           <ol>
             <li>Download and open the policy file: <a href="/policy.mobileconfig">policy.mobileconfig</a></li>
             <li>Install the policy at Settings > Profiles from the menu bar</li>
-            <li>Reload policies in Chrome at chrome://policy</li>
+            <li>Reload policies in browser at chrome://policy</li>
             <li>Install the extension:</li>
           </ol>
           <a href="/extension.crx"><button>Install Extension</button></a>
         </details>
         <details>
           <summary>Install via Policy (Windows)</summary>
+          <div id="select-browser">
+            <label for="browser-select">Browser: </label>
+            <select name="browser-select" id="browser-select" value="chrome">
+              <option value="chrome">Google Chrome</option>
+              <option value="edge">Microsoft Edge</option>
+            </select>
+          </div>
           <p><em>Note: The following commands may overwrite existing policies.</em></p>
           <ol>
             <li>Open Command Prompt as an administrator.</li>
-            <li>Run the following command: <code>reg add HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallAllowlist /v 1 /t REG_SZ /d <span id="windows-policy-id"></span> /f</code></li>
-            <li>Run the following command: <code>reg add HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallSources /v 1 /t REG_SZ /d <span id="windows-policy-host"></span>/* /f</code></li>
-            <li>Reload policies in Chrome at chrome://policy</li>
+            <li>Run the following command: <code>reg add HKLM\SOFTWARE\Policies\<span class="browser-registry-path">Google\Chrome</span>\ExtensionInstallAllowlist /v 1 /t REG_SZ /d <span id="windows-policy-id"></span> /f</code></li>
+            <li>Run the following command: <code>reg add HKLM\SOFTWARE\Policies\<span class="browser-registry-path">Google\Chrome</span>\ExtensionInstallSources /v 1 /t REG_SZ /d <span id="windows-policy-host"></span>/* /f</code></li>
+            <li>Reload policies in browser at <span class="policy-page-pointer">chrome://policy</span></li>
             <li>Install the extension:</li>
           </ol>
           <a href="/extension.crx"><button>Install Extension</button></a>
           <p><em>Hint: You can use the following commands to remove these policies:</em></p>
-          <p><code>reg delete HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallAllowlist /f</code></p>
-          <p><code>reg delete HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallSources /f</code></p>
+          <p><code>reg delete HKLM\SOFTWARE\Policies\<span class="browser-registry-path">Google\Chrome</span>\ExtensionInstallAllowlist /f</code></p>
+          <p><code>reg delete HKLM\SOFTWARE\Policies\<span class="browser-registry-path">Google\Chrome</span>\ExtensionInstallSources /f</code></p>
         </details>
         <details>
           <summary>Install manually</summary>

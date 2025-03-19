@@ -98,3 +98,8 @@ section#uploader p {
   opacity: 0.8;
   margin-top: 20px;
 }
+
+#browser-select {
+  font-size: 15px;
+  border-radius: 3px;
+}
